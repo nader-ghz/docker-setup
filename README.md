@@ -4,11 +4,11 @@
 
 #docker-compose up -d 
 
-#docker run --rm artisan migrate 
+*****************************
 
-#docker run --rm artisan central:migrate 
+#docker-compose run --rm artisan central:migrate --seed 
 
-#docker run --rm artisan tenants:migrate 
+#docker-compose run --rm artisan tenants:migrate --seed
 
 
 #docker run --rm composer ===> to run composer command 
