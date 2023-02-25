@@ -1,0 +1,292 @@
+2023-02-24 23:43:11,084:DEBUG:certbot._internal.main:certbot version: 2.3.0
+2023-02-24 23:43:11,085:DEBUG:certbot._internal.main:Location of certbot entry point: /usr/local/bin/certbot
+2023-02-24 23:43:11,085:DEBUG:certbot._internal.main:Arguments: ['--standalone', '--email', 'admin@ekipik.com', '--agree-tos', '--no-eff-email', '-d', 'ekipik.com']
+2023-02-24 23:43:11,085:DEBUG:certbot._internal.main:Discovered plugins: PluginsRegistry(PluginEntryPoint#manual,PluginEntryPoint#null,PluginEntryPoint#standalone,PluginEntryPoint#webroot)
+2023-02-24 23:43:11,740:DEBUG:certbot._internal.log:Root logging level set at 30
+2023-02-24 23:43:11,780:DEBUG:certbot._internal.plugins.selection:Requested authenticator standalone and installer None
+2023-02-24 23:43:11,816:DEBUG:certbot._internal.plugins.selection:Single candidate plugin: * standalone
+Description: Runs an HTTP server locally which serves the necessary validation files under the /.well-known/acme-challenge/ request path. Suitable if there is no HTTP server already running. HTTP challenge only (wildcards not supported).
+Interfaces: Authenticator, Plugin
+Entry point: standalone = certbot._internal.plugins.standalone:Authenticator
+Initialized: <certbot._internal.plugins.standalone.Authenticator object at 0x7f50e56d7fa0>
+Prep: True
+2023-02-24 23:43:11,829:DEBUG:certbot._internal.plugins.selection:Selected authenticator <certbot._internal.plugins.standalone.Authenticator object at 0x7f50e56d7fa0> and installer None
+2023-02-24 23:43:11,831:INFO:certbot._internal.plugins.selection:Plugins selected: Authenticator standalone, Installer None
+2023-02-24 23:43:12,130:DEBUG:certbot._internal.main:Picked account: <Account(RegistrationResource(body=Registration(key=None, contact=(), agreement=None, status=None, terms_of_service_agreed=None, only_return_existing=None, external_account_binding=None), uri='https://acme-v02.api.letsencrypt.org/acme/acct/981142156', new_authzr_uri=None, terms_of_service=None), b77255b35efceed86589ec77ef9de36d, Meta(creation_dt=datetime.datetime(2023, 2, 24, 21, 40, 1, tzinfo=<UTC>), creation_host='19659167250f', register_to_eff=None))>
+2023-02-24 23:43:12,137:DEBUG:acme.client:Sending GET request to https://acme-v02.api.letsencrypt.org/directory.
+2023-02-24 23:43:12,176:DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): acme-v02.api.letsencrypt.org:443
+2023-02-24 23:43:12,702:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "GET /directory HTTP/1.1" 200 756
+2023-02-24 23:43:12,705:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Fri, 24 Feb 2023 23:43:13 GMT
+Content-Type: application/json
+Content-Length: 756
+Connection: keep-alive
+Cache-Control: public, max-age=0, no-cache
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "XYNPcYBJxNI": "https://community.letsencrypt.org/t/adding-random-entries-to-the-directory/33417",
+  "keyChange": "https://acme-v02.api.letsencrypt.org/acme/key-change",
+  "meta": {
+    "caaIdentities": [
+      "letsencrypt.org"
+    ],
+    "termsOfService": "https://letsencrypt.org/documents/LE-SA-v1.3-September-21-2022.pdf",
+    "website": "https://letsencrypt.org"
+  },
+  "newAccount": "https://acme-v02.api.letsencrypt.org/acme/new-acct",
+  "newNonce": "https://acme-v02.api.letsencrypt.org/acme/new-nonce",
+  "newOrder": "https://acme-v02.api.letsencrypt.org/acme/new-order",
+  "renewalInfo": "https://acme-v02.api.letsencrypt.org/get/draft-ietf-acme-ari-00/renewalInfo/",
+  "revokeCert": "https://acme-v02.api.letsencrypt.org/acme/revoke-cert"
+}
+2023-02-24 23:43:12,716:DEBUG:certbot._internal.display.obj:Notifying user: Requesting a certificate for ekipik.com
+2023-02-24 23:43:12,752:DEBUG:acme.client:Requesting fresh nonce
+2023-02-24 23:43:12,763:DEBUG:acme.client:Sending HEAD request to https://acme-v02.api.letsencrypt.org/acme/new-nonce.
+2023-02-24 23:43:12,953:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "HEAD /acme/new-nonce HTTP/1.1" 200 0
+2023-02-24 23:43:12,962:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Fri, 24 Feb 2023 23:43:13 GMT
+Connection: keep-alive
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Replay-Nonce: 1DFA11Q0ptjpmt1Lcu3UtcchDLnJ2Nv8fA3lxxD52OjMg_A
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+
+2023-02-24 23:43:12,965:DEBUG:acme.client:Storing nonce: 1DFA11Q0ptjpmt1Lcu3UtcchDLnJ2Nv8fA3lxxD52OjMg_A
+2023-02-24 23:43:12,968:DEBUG:acme.client:JWS payload:
+b'{\n  "identifiers": [\n    {\n      "type": "dns",\n      "value": "ekipik.com"\n    }\n  ]\n}'
+2023-02-24 23:43:12,980:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/new-order:
+{
+  "protected": "eyJhbGciOiAiUlMyNTYiLCAia2lkIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2FjY3QvOTgxMTQyMTU2IiwgIm5vbmNlIjogIjFERkExMVEwcHRqcG10MUxjdTNVdGNjaERMbkoyTnY4ZkEzbHh4RDUyT2pNZ19BIiwgInVybCI6ICJodHRwczovL2FjbWUtdjAyLmFwaS5sZXRzZW5jcnlwdC5vcmcvYWNtZS9uZXctb3JkZXIifQ",
+  "signature": "j2ebt-hGVW7q6qNP1eHSKP0z1KS_8t-d5yagFRtGmmmKw_4oO-AKu6EXXIhTfVpOh3jd9KGsUlA_ELLkF2zJfN1-xoJCda2aQJvnv698k620MmCjCCDpBw1JOLckLhSf--eQTo-pDHUx7ifLo2URurkcayOhmE-sHudsBFGNRqvzpThPRcZNsUeEP68hKyDcpEzJ23SGYKNTYRpwjHBM8EgQbWZDaqUQyyTogE3DmHA1FXjhFGxtSw1aAyByxDPTU1zLYUukylhTNXPYRume4QQcACkwPi03q57ao06fuyjeI5CeMzzFlpiaf85auVyfRPB7NDMeLTJM-41WJ98Shg",
+  "payload": "ewogICJpZGVudGlmaWVycyI6IFsKICAgIHsKICAgICAgInR5cGUiOiAiZG5zIiwKICAgICAgInZhbHVlIjogImVraXBpay5jb20iCiAgICB9CiAgXQp9"
+}
+2023-02-24 23:43:13,362:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/new-order HTTP/1.1" 201 335
+2023-02-24 23:43:13,364:DEBUG:acme.client:Received response:
+HTTP 201
+Server: nginx
+Date: Fri, 24 Feb 2023 23:43:14 GMT
+Content-Type: application/json
+Content-Length: 335
+Connection: keep-alive
+Boulder-Requester: 981142156
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Location: https://acme-v02.api.letsencrypt.org/acme/order/981142156/166711986016
+Replay-Nonce: 1AADaBHlJrJwBvr5BU2_lfgiFH7ihFpJSTIWbJIwlQVGYbY
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "status": "pending",
+  "expires": "2023-03-03T23:43:14Z",
+  "identifiers": [
+    {
+      "type": "dns",
+      "value": "ekipik.com"
+    }
+  ],
+  "authorizations": [
+    "https://acme-v02.api.letsencrypt.org/acme/authz-v3/206155672826"
+  ],
+  "finalize": "https://acme-v02.api.letsencrypt.org/acme/finalize/981142156/166711986016"
+}
+2023-02-24 23:43:13,366:DEBUG:acme.client:Storing nonce: 1AADaBHlJrJwBvr5BU2_lfgiFH7ihFpJSTIWbJIwlQVGYbY
+2023-02-24 23:43:13,370:DEBUG:acme.client:JWS payload:
+b''
+2023-02-24 23:43:13,373:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/authz-v3/206155672826:
+{
+  "protected": "eyJhbGciOiAiUlMyNTYiLCAia2lkIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2FjY3QvOTgxMTQyMTU2IiwgIm5vbmNlIjogIjFBQURhQkhsSnJKd0J2cjVCVTJfbGZnaUZIN2loRnBKU1RJV2JKSXdsUVZHWWJZIiwgInVybCI6ICJodHRwczovL2FjbWUtdjAyLmFwaS5sZXRzZW5jcnlwdC5vcmcvYWNtZS9hdXRoei12My8yMDYxNTU2NzI4MjYifQ",
+  "signature": "TliILyL4G3NNbcJ8D9VqIgClwZVUlWvcs6ns-QcEPOcCNkt4AIgZfuaAlWcedxCDhuSUQI1FgO7ocgNMQrH8URNtNOlwFdp2coYFAUdIgDO04Mh0bez3LKy4XHWtTH0-Fl7rjtJvud4w_shJQ7UN9XdO-oArq2pPV-DjJCCVVKX13hnkcLqviiFiH-6zwQX6vO0Fu_laJuOUjLRk5gDBpArJgxeY4-ErftMRSBNb12IAG82FAhg7G9ol7z12Bn5aYs6nS0qyXHIhg8ITX4L6NrpOItHiKPKGBQunjCg_wc1ar3IMkPm2AhBElEAX3vDOXw_n8EdzdO-hakZ64D-i2g",
+  "payload": ""
+}
+2023-02-24 23:43:13,555:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/authz-v3/206155672826 HTTP/1.1" 200 794
+2023-02-24 23:43:13,557:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Fri, 24 Feb 2023 23:43:14 GMT
+Content-Type: application/json
+Content-Length: 794
+Connection: keep-alive
+Boulder-Requester: 981142156
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Replay-Nonce: 15C976XlAMTHK6IXRpambbnR4ZMMOxK7quxRfRNEkoKAkes
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "identifier": {
+    "type": "dns",
+    "value": "ekipik.com"
+  },
+  "status": "pending",
+  "expires": "2023-03-03T23:43:14Z",
+  "challenges": [
+    {
+      "type": "http-01",
+      "status": "pending",
+      "url": "https://acme-v02.api.letsencrypt.org/acme/chall-v3/206155672826/m7izUA",
+      "token": "zk7sXnJGjD4d7NUPO5ux8ZYGbawrbPeSyGLIdypII4A"
+    },
+    {
+      "type": "dns-01",
+      "status": "pending",
+      "url": "https://acme-v02.api.letsencrypt.org/acme/chall-v3/206155672826/kycDgQ",
+      "token": "zk7sXnJGjD4d7NUPO5ux8ZYGbawrbPeSyGLIdypII4A"
+    },
+    {
+      "type": "tls-alpn-01",
+      "status": "pending",
+      "url": "https://acme-v02.api.letsencrypt.org/acme/chall-v3/206155672826/iF_W4Q",
+      "token": "zk7sXnJGjD4d7NUPO5ux8ZYGbawrbPeSyGLIdypII4A"
+    }
+  ]
+}
+2023-02-24 23:43:13,559:DEBUG:acme.client:Storing nonce: 15C976XlAMTHK6IXRpambbnR4ZMMOxK7quxRfRNEkoKAkes
+2023-02-24 23:43:13,562:INFO:certbot._internal.auth_handler:Performing the following challenges:
+2023-02-24 23:43:13,563:INFO:certbot._internal.auth_handler:http-01 challenge for ekipik.com
+2023-02-24 23:43:13,565:DEBUG:acme.standalone:Successfully bound to :80 using IPv6
+2023-02-24 23:43:13,567:DEBUG:acme.standalone:Certbot wasn't able to bind to :80 using IPv4, this is often expected due to the dual stack nature of IPv6 socket implementations.
+2023-02-24 23:43:13,572:DEBUG:acme.client:JWS payload:
+b'{}'
+2023-02-24 23:43:13,575:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/chall-v3/206155672826/m7izUA:
+{
+  "protected": "eyJhbGciOiAiUlMyNTYiLCAia2lkIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2FjY3QvOTgxMTQyMTU2IiwgIm5vbmNlIjogIjE1Qzk3NlhsQU1USEs2SVhScGFtYmJuUjRaTU1PeEs3cXV4UmZSTkVrb0tBa2VzIiwgInVybCI6ICJodHRwczovL2FjbWUtdjAyLmFwaS5sZXRzZW5jcnlwdC5vcmcvYWNtZS9jaGFsbC12My8yMDYxNTU2NzI4MjYvbTdpelVBIn0",
+  "signature": "G1TxtPGOyAKso1PzvOrOeEOg3VHu357xRHnYzuFWhMBCmUqN2cgYo3jEcX5EeY_oGl5O-30iC8ZGX8PvzzIWdKhJh1wDa68v6fCuQhDh2ajdd7BRFNKumb-aiR6tq8lg10ZruU4uwzslbDqAKpXn20AmmuHWoz8uqHTymnx4ku_1oSFcZVwlrmfb-kcLFtf5Ql5KzLoiePpDO5uYwk9D5Aqwavpw0EowJESANaCltGYvlfYm2vM7blWbyiC1hje7Cir_4DkxlPZaLRYNFozXl8_UtmKq_4pY6bwaiEFS1PzYAeyhfeMsfcy5CbDu24tOtzojsvRU90Ljw63DqksdnQ",
+  "payload": "e30"
+}
+2023-02-24 23:43:13,770:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/chall-v3/206155672826/m7izUA HTTP/1.1" 200 187
+2023-02-24 23:43:13,772:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Fri, 24 Feb 2023 23:43:14 GMT
+Content-Type: application/json
+Content-Length: 187
+Connection: keep-alive
+Boulder-Requester: 981142156
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index", <https://acme-v02.api.letsencrypt.org/acme/authz-v3/206155672826>;rel="up"
+Location: https://acme-v02.api.letsencrypt.org/acme/chall-v3/206155672826/m7izUA
+Replay-Nonce: C8781fFVHmmiFkez1oCRzU_XoULtcPT9l7b5XXR_HWW98cE
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "type": "http-01",
+  "status": "pending",
+  "url": "https://acme-v02.api.letsencrypt.org/acme/chall-v3/206155672826/m7izUA",
+  "token": "zk7sXnJGjD4d7NUPO5ux8ZYGbawrbPeSyGLIdypII4A"
+}
+2023-02-24 23:43:13,774:DEBUG:acme.client:Storing nonce: C8781fFVHmmiFkez1oCRzU_XoULtcPT9l7b5XXR_HWW98cE
+2023-02-24 23:43:13,776:INFO:certbot._internal.auth_handler:Waiting for verification...
+2023-02-24 23:43:14,778:DEBUG:acme.client:JWS payload:
+b''
+2023-02-24 23:43:14,782:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/authz-v3/206155672826:
+{
+  "protected": "eyJhbGciOiAiUlMyNTYiLCAia2lkIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2FjY3QvOTgxMTQyMTU2IiwgIm5vbmNlIjogIkM4NzgxZkZWSG1taUZrZXoxb0NSelVfWG9VTHRjUFQ5bDdiNVhYUl9IV1c5OGNFIiwgInVybCI6ICJodHRwczovL2FjbWUtdjAyLmFwaS5sZXRzZW5jcnlwdC5vcmcvYWNtZS9hdXRoei12My8yMDYxNTU2NzI4MjYifQ",
+  "signature": "UkX_Ep_pTd1UP4xyKVhrJA5--bTCTviySZTA66Iw6hOVzddDFNrP_Bbj23JKCB9wg-safgl8wl4AmQZatVkoG4yVOn26zisQCFR3JTBQ4rqit2baMtSSx7G4_s5Eh9fQz4B-zB2g90EZpBkvkhaq0b0ZR4S6rp6ekkmGUVYugzvHULAADj6FAGeyvfD_yLIekK2dOwA8u_xy-2KgF6F6UlLdbrjypC0A0Avn9yWVVdwZ8PKxJy0FgJSqTYrue0NTopYMavrNMR7KbiWjdiT9iWxDfExIaRwbM8gdbL-RKqj1oGzwa5o-k8pB9VQ7gtlTfZ_vU5snPqzOyUOBTUud0g",
+  "payload": ""
+}
+2023-02-24 23:43:14,967:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/authz-v3/206155672826 HTTP/1.1" 200 1028
+2023-02-24 23:43:14,969:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Fri, 24 Feb 2023 23:43:16 GMT
+Content-Type: application/json
+Content-Length: 1028
+Connection: keep-alive
+Boulder-Requester: 981142156
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Replay-Nonce: 1DFACyO3ySNiaSu4GhAVqaiiSc1T1P2OtRzCHz87Whgp0Tk
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "identifier": {
+    "type": "dns",
+    "value": "ekipik.com"
+  },
+  "status": "invalid",
+  "expires": "2023-03-03T23:43:14Z",
+  "challenges": [
+    {
+      "type": "http-01",
+      "status": "invalid",
+      "error": {
+        "type": "urn:ietf:params:acme:error:unauthorized",
+        "detail": "76.76.21.22: Invalid response from http://ekipik.com/.well-known/acme-challenge/zk7sXnJGjD4d7NUPO5ux8ZYGbawrbPeSyGLIdypII4A: 404",
+        "status": 403
+      },
+      "url": "https://acme-v02.api.letsencrypt.org/acme/chall-v3/206155672826/m7izUA",
+      "token": "zk7sXnJGjD4d7NUPO5ux8ZYGbawrbPeSyGLIdypII4A",
+      "validationRecord": [
+        {
+          "url": "http://ekipik.com/.well-known/acme-challenge/zk7sXnJGjD4d7NUPO5ux8ZYGbawrbPeSyGLIdypII4A",
+          "hostname": "ekipik.com",
+          "port": "80",
+          "addressesResolved": [
+            "76.76.21.22",
+            "76.76.21.9"
+          ],
+          "addressUsed": "76.76.21.22"
+        }
+      ],
+      "validated": "2023-02-24T23:43:14Z"
+    }
+  ]
+}
+2023-02-24 23:43:14,970:DEBUG:acme.client:Storing nonce: 1DFACyO3ySNiaSu4GhAVqaiiSc1T1P2OtRzCHz87Whgp0Tk
+2023-02-24 23:43:14,972:INFO:certbot._internal.auth_handler:Challenge failed for domain ekipik.com
+2023-02-24 23:43:14,973:INFO:certbot._internal.auth_handler:http-01 challenge for ekipik.com
+2023-02-24 23:43:14,975:DEBUG:certbot._internal.display.obj:Notifying user: 
+Certbot failed to authenticate some domains (authenticator: standalone). The Certificate Authority reported these problems:
+  Domain: ekipik.com
+  Type:   unauthorized
+  Detail: 76.76.21.22: Invalid response from http://ekipik.com/.well-known/acme-challenge/zk7sXnJGjD4d7NUPO5ux8ZYGbawrbPeSyGLIdypII4A: 404
+
+Hint: The Certificate Authority failed to download the challenge files from the temporary standalone webserver started by Certbot on port 80. Ensure that the listed domains point to this machine and that it can accept inbound connections from the internet.
+
+2023-02-24 23:43:14,976:DEBUG:certbot._internal.error_handler:Encountered exception:
+Traceback (most recent call last):
+  File "/opt/certbot/src/certbot/certbot/_internal/auth_handler.py", line 108, in handle_authorizations
+    self._poll_authorizations(authzrs, max_retries, max_time_mins, best_effort)
+  File "/opt/certbot/src/certbot/certbot/_internal/auth_handler.py", line 212, in _poll_authorizations
+    raise errors.AuthorizationError('Some challenges have failed.')
+certbot.errors.AuthorizationError: Some challenges have failed.
+
+2023-02-24 23:43:14,978:DEBUG:certbot._internal.error_handler:Calling registered functions
+2023-02-24 23:43:14,979:INFO:certbot._internal.auth_handler:Cleaning up challenges
+2023-02-24 23:43:14,980:DEBUG:certbot._internal.plugins.standalone:Stopping server at :::80...
+2023-02-24 23:43:15,072:DEBUG:certbot._internal.log:Exiting abnormally:
+Traceback (most recent call last):
+  File "/usr/local/bin/certbot", line 33, in <module>
+    sys.exit(load_entry_point('certbot', 'console_scripts', 'certbot')())
+  File "/opt/certbot/src/certbot/certbot/main.py", line 19, in main
+    return internal_main.main(cli_args)
+  File "/opt/certbot/src/certbot/certbot/_internal/main.py", line 1862, in main
+    return config.func(config, plugins)
+  File "/opt/certbot/src/certbot/certbot/_internal/main.py", line 1595, in certonly
+    lineage = _get_and_save_cert(le_client, config, domains, certname, lineage)
+  File "/opt/certbot/src/certbot/certbot/_internal/main.py", line 140, in _get_and_save_cert
+    lineage = le_client.obtain_and_enroll_certificate(domains, certname)
+  File "/opt/certbot/src/certbot/certbot/_internal/client.py", line 516, in obtain_and_enroll_certificate
+    cert, chain, key, _ = self.obtain_certificate(domains)
+  File "/opt/certbot/src/certbot/certbot/_internal/client.py", line 428, in obtain_certificate
+    orderr = self._get_order_and_authorizations(csr.data, self.config.allow_subset_of_names)
+  File "/opt/certbot/src/certbot/certbot/_internal/client.py", line 496, in _get_order_and_authorizations
+    authzr = self.auth_handler.handle_authorizations(orderr, self.config, best_effort)
+  File "/opt/certbot/src/certbot/certbot/_internal/auth_handler.py", line 108, in handle_authorizations
+    self._poll_authorizations(authzrs, max_retries, max_time_mins, best_effort)
+  File "/opt/certbot/src/certbot/certbot/_internal/auth_handler.py", line 212, in _poll_authorizations
+    raise errors.AuthorizationError('Some challenges have failed.')
+certbot.errors.AuthorizationError: Some challenges have failed.
+2023-02-24 23:43:15,075:ERROR:certbot._internal.log:Some challenges have failed.
